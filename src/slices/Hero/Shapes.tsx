@@ -97,7 +97,7 @@ function Geometries() {
     />
   ));
 }
-
+// @ts-ignore
 function Geometry({ position, geometry, soundEffects, materials,r }) {
   const meshRef = useRef();
   const [visible, setVisible] = useState(false);
@@ -107,9 +107,10 @@ function Geometry({ position, geometry, soundEffects, materials,r }) {
   function getRandomMaterial() {
     return gsap.utils.random(materials);
   }
-
+// @ts-ignore
   function handleClick(e) {
     const mesh = e.object;
+    // @ts-ignore
     gsap.utils.random(soundEffects).play(); 
 
     gsap.to(mesh.rotation, {
@@ -136,6 +137,7 @@ function Geometry({ position, geometry, soundEffects, materials,r }) {
     let ctx = gsap.context(() => {
       setVisible(true);
       // if(meshRef.current==null) return;
+      // @ts-ignore
       gsap.from(meshRef.current.scale, {
         x: 0,
         y: 0,
@@ -149,6 +151,7 @@ function Geometry({ position, geometry, soundEffects, materials,r }) {
   }, []);
 
   return (
+    // @ts-ignore
     <group position={position} ref={meshRef}>
       <Float speed={5 * r} rotationIntensity={6 * r} floatIntensity={5 * r}>
         <mesh
@@ -157,6 +160,7 @@ function Geometry({ position, geometry, soundEffects, materials,r }) {
           onPointerOver={handlePointerOver}
           onPointerOut={handlePointerOut}
           visible={visible}
+          // @ts-ignore
           material={startingMaterial}
         ></mesh>
       </Float>
